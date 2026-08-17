@@ -27,6 +27,11 @@ test("server-renders the Media Multiviewer workspace", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+  assert.equal(response.headers.get("content-security-policy"), "frame-ancestors 'none'");
+  assert.equal(response.headers.get("permissions-policy"), "camera=(), display-capture=(self), geolocation=(), microphone=()");
+  assert.equal(response.headers.get("referrer-policy"), "no-referrer");
+  assert.equal(response.headers.get("x-content-type-options"), "nosniff");
+  assert.equal(response.headers.get("x-frame-options"), "DENY");
 
   const html = await response.text();
   assert.match(html, /<title>Media Multiviewer<\/title>/i);
@@ -100,6 +105,7 @@ test("includes capture, focus, audio, and fullscreen controls", async () => {
   assert.match(packageJson, /"tesseract\.js"/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.match(securityHeaders, /X-Content-Type-Options: nosniff/);
+  assert.match(securityHeaders, /Content-Security-Policy: frame-ancestors 'none'/);
   assert.match(securityHeaders, /Referrer-Policy: no-referrer/);
   assert.match(securityHeaders, /X-Frame-Options: DENY/);
   assert.match(securityHeaders, /display-capture=\(self\)/);

@@ -1,0 +1,8 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), display-capture=(self), geolocation=(), microphone=()
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable

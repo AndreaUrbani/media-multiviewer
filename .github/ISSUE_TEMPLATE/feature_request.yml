@@ -1,0 +1,26 @@
+name: Feature request
+description: Propose a focused product improvement.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What workflow is difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Explain how it preserves the local-first permission boundary.
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Responsible-use boundary
+      options:
+        - label: This request does not require bypassing DRM, paywalls, authentication, or access controls.
+          required: true

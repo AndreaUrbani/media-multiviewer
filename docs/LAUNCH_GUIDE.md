@@ -1,4 +1,15 @@
-# GitHub launch guide
+# GitHub publication guide
+
+## Current publication
+
+- **Repository:** <https://github.com/AndreaUrbani/media-multiviewer>
+- **Production:** <https://media-multiviewer.andreaurbani.workers.dev/>
+- **Production branch:** `main`
+- **Deployment:** `.github/workflows/deploy.yml` builds and deploys every push
+  to `main` with the official Cloudflare Wrangler action.
+
+Operational instructions and Free-plan guardrails are maintained in
+[HOSTING_AND_OPERATIONS.md](HOSTING_AND_OPERATIONS.md).
 
 ## Suggested repository metadata
 
@@ -9,10 +20,10 @@
 - **License:** MIT for original source code
 - **Default branch:** `main`
 
-## Create the remote later
+## Recreating the repository
 
-After the manual browser test and final review, create an empty GitHub
-repository. From this project directory:
+The repository already exists. The commands below are retained only for a new
+fork or a replacement repository:
 
 ```bash
 git add .
@@ -28,7 +39,7 @@ gh repo create media-multiviewer --public --source=. --remote=origin
 git push -u origin main
 ```
 
-Do not run these commands until `docs/PUBLIC_RELEASE_CHECKLIST.md` is complete.
+Do not replace the current `origin` accidentally.
 
 ## GitHub settings
 
@@ -45,5 +56,7 @@ Do not run these commands until `docs/PUBLIC_RELEASE_CHECKLIST.md` is complete.
 
 Mention the four-source limit, browser picker workflow, local-only media path,
 audio-browser dependency, protected-media limitation, and responsible-use
-boundary. Mention that OCR naming is optional and best-effort. Avoid implying
-compatibility with any specific media provider.
+boundary. Mention that OCR naming is optional and best-effort. Explicitly state
+that provider-controlled, DRM/EME/Widevine/HDCP-protected, URL-imported, or
+iframe-blocked sources are unsupported. YouTube and similar providers must not
+be presented as guaranteed-compatible integrations.

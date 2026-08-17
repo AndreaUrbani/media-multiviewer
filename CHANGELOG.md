@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Added automatic production deployment from GitHub `main` to Cloudflare
+  Workers.
+- Documented provider capture restrictions, unsupported URL/iframe imports,
+  DRM/EME/Widevine/HDCP behavior, and non-guaranteed YouTube compatibility.
+- Added hosting operations, token rotation, rollback, maintenance, and
+  Cloudflare Free-plan guardrails.
+
 ## 0.1.0 — 2026-08-17
 
 - Four-source local browser multiview.

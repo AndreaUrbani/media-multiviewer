@@ -1,11 +1,14 @@
 # Media Multiviewer
 
 ![CI](https://github.com/AndreaUrbani/media-multiviewer/actions/workflows/ci.yml/badge.svg)
+![Deploy](https://github.com/AndreaUrbani/media-multiviewer/actions/workflows/deploy.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-e5e5e7.svg)
 
 A minimal, local-first workspace that places up to four browser tabs or windows
 in one multiview. Pick one source for audio, focus any tile, or send it to the
 browser's native fullscreen mode.
+
+**Live app:** <https://media-multiviewer.andreaurbani.workers.dev/>
 
 > **Project status:** experimental public beta. It does not fetch, proxy,
 > record, or host media.
@@ -31,6 +34,31 @@ Modern browsers intentionally do not let a website list or import all open
 tabs automatically. Each tab must be approved by the user. That permission
 dialog is the shortest no-code workflow a regular website can provide without
 installing a browser extension.
+
+## Provider compatibility
+
+Media Multiviewer is a browser-capture workspace, not a URL player, embedder,
+downloader, restreamer, or media proxy. It can display a source only when the
+browser returns a usable video track through `getDisplayMedia`.
+
+| Source type | Expected result |
+| --- | --- |
+| Unprotected HTML5 video, local files, presentations, and ordinary browser tabs | Usually works when the browser offers the tab or window in its sharing panel |
+| A source whose provider disables or interferes with screen capture | Unsupported; it may be missing from the picker, pause, or produce a blank frame |
+| DRM/EME/Widevine/HDCP-protected playback, rentals, subscription video, and protected broadcasts | Unsupported; black video, silent audio, reduced quality, or capture rejection are expected outcomes |
+| A tab whose audio is not offered by the browser or operating system | Video-only; Media Multiviewer cannot recover the missing audio track |
+| A pasted stream URL, iframe, playlist URL, or direct media manifest | Unsupported; the application deliberately has no URL-import or proxy feature |
+
+YouTube and similar providers are **not guaranteed or officially supported**.
+Some ordinary, non-protected videos may be capturable in particular
+browser/OS combinations, while other videos, account tiers, rentals, live
+events, or provider policies may block video or audio. Netflix, Disney+,
+Prime Video, Hulu, paid sports/broadcast services, and other protected
+platforms should be treated as unsupported.
+
+The project does not attempt to bypass any of these restrictions. Provider
+names are examples only, not an endorsement or compatibility claim. See
+[docs/KNOWN_LIMITATIONS.md](docs/KNOWN_LIMITATIONS.md) for the complete matrix.
 
 ## Start on macOS
 
@@ -118,7 +146,11 @@ browser-storage details.
 
 ## Known limitations
 
-- DRM-protected players may appear black or refuse capture.
+- Providers can block, obscure, pause, mute, or reduce the quality of captured
+  playback; there is no application-side workaround.
+- DRM/EME/Widevine/HDCP-protected players may appear black or refuse capture.
+- YouTube and other provider-hosted media are unsupported and may work only
+  incidentally for particular unprotected videos and browser combinations.
 - Tab audio availability depends on browser and operating system support.
 - Mobile browsers generally provide a reduced screen-sharing experience.
 - A web page cannot enumerate tabs or pre-approve capture permissions.
@@ -158,12 +190,15 @@ worker/    Cloudflare/vinext runtime entry point
 
 ## Public release
 
-The repository includes read-only CI permissions, Dependabot configuration,
-release checks, issue templates, a security policy, and explicit
-responsible-use boundaries.
+The public repository deploys `main` automatically to Cloudflare Workers after
+building it in GitHub Actions. The repository also includes read-only CI
+permissions, Dependabot configuration, release checks, issue templates, a
+security policy, and explicit responsible-use boundaries.
 
-Follow [docs/PUBLIC_RELEASE_CHECKLIST.md](docs/PUBLIC_RELEASE_CHECKLIST.md) and
-[docs/LAUNCH_GUIDE.md](docs/LAUNCH_GUIDE.md) before connecting a GitHub remote.
+See [docs/HOSTING_AND_OPERATIONS.md](docs/HOSTING_AND_OPERATIONS.md) for deploy,
+rollback, token rotation, maintenance, and Free-plan guardrails. The original
+publication process remains in [docs/PUBLIC_RELEASE_CHECKLIST.md](docs/PUBLIC_RELEASE_CHECKLIST.md)
+and [docs/LAUNCH_GUIDE.md](docs/LAUNCH_GUIDE.md).
 
 ## License
 

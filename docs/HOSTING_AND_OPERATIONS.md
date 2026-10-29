@@ -1,6 +1,15 @@
 # Hosting and operations
 
-## Current production setup
+## Status: on hold (since October 29, 2026)
+
+There is no production deployment. The Cloudflare Worker `media-multiviewer`
+has been deleted, the **Deploy** workflow is disabled in GitHub Actions, and the
+`CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` repository secrets have been
+removed. The rest of this document describes the setup as it was and is kept
+for when the project resumes: re-create the secrets, re-enable the workflow,
+and push to `main`.
+
+## Previous production setup
 
 - Repository: <https://github.com/AndreaUrbani/media-multiviewer>
 - Production URL: <https://media-multiviewer.andreaurbani.workers.dev/>

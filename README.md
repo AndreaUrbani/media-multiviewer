@@ -1,17 +1,15 @@
 # Media Multiviewer
 
 ![CI](https://github.com/AndreaUrbani/media-multiviewer/actions/workflows/ci.yml/badge.svg)
-![Deploy](https://github.com/AndreaUrbani/media-multiviewer/actions/workflows/deploy.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-e5e5e7.svg)
 
 A minimal, local-first workspace that places up to four browser tabs or windows
 in one multiview. Pick one source for audio, focus any tile, or send it to the
 browser's native fullscreen mode.
 
-**Live app:** <https://media-multiviewer.andreaurbani.workers.dev/>
-
-> **Project status:** experimental public beta. It does not fetch, proxy,
-> record, or host media.
+> **Project status:** work in progress, currently on hold. The hosted version
+> has been taken offline; the app still runs locally (see below). It does not
+> fetch, proxy, record, or host media.
 
 > **Responsible use:** only capture content you are authorized to view and
 > display. The project does not bypass DRM, paywalls, access controls, or
@@ -190,8 +188,9 @@ worker/    Cloudflare/vinext runtime entry point
 
 ## Public release
 
-The public repository deploys `main` automatically to Cloudflare Workers after
-building it in GitHub Actions. The repository also includes read-only CI
+The hosted deployment is offline while the project is on hold: the Cloudflare
+Worker has been deleted and the **Deploy** workflow is disabled, so pushing to
+`main` publishes nothing. The repository also includes read-only CI
 permissions, Dependabot configuration, release checks, issue templates, a
 security policy, and explicit responsible-use boundaries.
 
